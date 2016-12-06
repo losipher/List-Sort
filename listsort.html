@@ -1,0 +1,68 @@
+<!-- Carlos Sandoval -->
+<!-- HTML/Javascript List Sorting Example -->
+<html>
+
+<head>
+<title>List Sorting Example</title>
+<style>
+.center {
+	margin: auto;
+	width: 60%;
+	border: 3px solid #73AD21;
+	padding: 10px;
+}
+
+textarea{
+	margin: auto;
+	height: 200px;
+	width: 80%;
+	border: 3px solid #F7730E;
+}
+</style>
+<script src="alphanum.js"></script>
+</head>
+
+<body>
+	<div class="center">
+		<form action="javascript:sortElements()">
+			<textarea id="sourceTextArea" cols="50" rows="5">This text input area will take any input that is separated by spaces or commas and sort it and display it in the result text area below.</textarea></br>
+			<button type="submit">Sort</input>
+		</form>
+	</div>
+	<div class="center">
+		<textarea id="resultTextArea" cols="50" rows="5" readonly></textarea>
+	</div>
+</body>
+
+<script type="text/javascript">
+	function sortElements(){
+		var sourceTA = document.getElementById('sourceTextArea');
+		var resultTA = document.getElementById('resultTextArea');
+		
+		var sourceText = sourceTA.value;
+		sourceText = sourceText.replace(/\s+/g,' ').trim();
+		var spaceElements = sourceText.split(' ');
+		var commaElements = sourceText.split(',');
+		
+		if (spaceElements.length == 1 && commaElements.length == 1){
+			alert("The text entered is not seperated by spaces, commas, or is just one element!");
+			return;
+		}
+		
+		if (spaceElements.length == 0 && commaElements.length == 0){
+			alert("Please enter something to be sorted before trying to sort!");
+			return;
+		}
+		
+		if (spaceElements.length > 1){
+			spaceElements.alphanumSort(true);
+			resultTA.value = spaceElements.join("\n");
+		}
+		if (commaElements.length > 1){
+			resultTA.value = commaElements.alphanumSort(true);
+			resultTA.value = commaElements.join("\n");
+		}
+	}
+</script>
+
+</html>
